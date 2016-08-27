@@ -1,8 +1,12 @@
 import React from 'react';
 
-const AppComponent = () => {
+const AppComponent = (props) => {
   return (
-    <div>Hello from App 1</div>
+    <div>
+      {props.AppState.data.map(f => {
+        return (<p key={f.id}>{f.title}</p>)
+      })}
+    </div>
   )
 };
 
