@@ -1,12 +1,17 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
-
+import { ReduxAsyncConnect } from 'redux-connect'
 import App from './Components/App';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 const routes = (
-  <Router history={browserHistory}>
-    <Route path="/" component={App} />
-  </Router>
+  <Provider store={store} key="provider">
+    <Router render={(props) => <ReduxAsyncConnect {...props}/>} history={browserHistory}>
+      <Route path="/" component={App}/>
+    </Router>
+  </Provider>
 );
 
 export default routes;

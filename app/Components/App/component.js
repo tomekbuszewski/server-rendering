@@ -1,4 +1,10 @@
 import React from 'react';
+import { asyncConnect } from 'redux-connect'
+
+@asyncConnect([ {
+  key:     'lunch',
+  promise: ({ params, helpers }) => Promise.resolve({ id: 1, name: 'Borsch' })
+} ])
 
 class AppComponent extends React.Component {
   constructor(props) {

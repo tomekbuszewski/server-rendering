@@ -29,7 +29,7 @@ function createPage(html, store) {
   `
 }
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   const store = createStore(combineReducers({ reduxAsyncConnect }));
 
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
