@@ -7,34 +7,26 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { getState } from 'redux';
+import { match, RouterContext } from 'react-router'
 
+import routes from './app/routes';
 import store from './app/store';
 
-import App from './app/Components/App';
-
 const app = express();
-
-const currentStore = store.getState();
-const port = 666;
+const port         = 666;
 
 app.get('/', (req, res) => {
-  const body = renderToString(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-
-  res.send(`<!DOCTYPE html>
-<html>
-  <head>
-    <title>React</title>
-  </head>
-  <body>
-  <div id="app">${body}</div>
-  <script>window.__PRELOADED_STATE__ = ${JSON.stringify(currentStore)}</script>
-  
-  </body>
-</html>`);
+  match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+    if (renderProps) {
+      res.send(`<div id="app">${renderToString(
+        <Provider store={store}>
+          <RouterContext {...renderProps} />
+        </Provider>
+      )}</div>`)
+    } else {
+      console.log('err')
+    }
+  });
 });
 
 app.use('/public', express.static(path.join(__dirname, 'public')));

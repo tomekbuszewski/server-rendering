@@ -1,5 +1,10 @@
 const initialState = {
-  data: []
+  data: [
+    {
+      "id": 10,
+      "title": "zc"
+    }
+  ]
 };
 
 const AppState = (state = initialState, action) => {
