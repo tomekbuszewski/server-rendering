@@ -3,29 +3,46 @@ require('babel-register');
 import express from 'express';
 import path from 'path';
 
-import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToString } from 'react-dom/server'
+import { match, RoutingContext } from 'react-router'
+import { ReduxAsyncConnect, loadOnServer, reducer as reduxAsyncConnect } from 'redux-connect'
 import { Provider } from 'react-redux';
-import { getState } from 'redux';
-import { match, RouterContext } from 'react-router'
+import { createStore, combineReducers } from 'redux';
 
 import routes from './app/routes';
-import store from './app/store';
+// import store from './app/store';
 
-const app = express();
-const port         = 666;
+const app  = express();
+const port = 666;
 
-app.get('/', (req, res) => {
+function createPage(html, store) {
+  return `
+    <!doctype html>
+    <html>
+      <body>
+        <div id="app">${html}</div>
+
+        <!-- its a Redux initial data -->
+        <script dangerouslySetInnerHTML={{__html: ${window.__data = JSON.stringify(store.getState() )} />
+      </body>
+    </html>
+  `
+}
+
+app.get('*', (req, res) => {
+  const store = createStore(combineReducers({ reduxAsyncConnect }));
+
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
-    if (renderProps) {
-      res.send(`<div id="app">${renderToString(
-        <Provider store={store}>
-          <RouterContext {...renderProps} />
+    loadOnServer({... renderProps, store}).then(() => {
+      const appHTML = renderToString(
+        <Provider store={store} key="provider">
+          <ReduxAsyncConnect {...renderProps} />
         </Provider>
-      )}</div>`)
-    } else {
-      console.log('err')
-    }
+      );
+
+      const html = createPage(appHTML, store);
+      res.send(html);
+    });
   });
 });
 

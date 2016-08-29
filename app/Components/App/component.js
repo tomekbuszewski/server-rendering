@@ -5,6 +5,9 @@ class AppComponent extends React.Component {
     super(props);
 
     this.props = props;
+  }
+
+  componentDidMount() {
     this.props.fetch();
   }
 
