@@ -1,28 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 
 import actions from './actions';
 
-const mapStateToProps = (state) => {
-  return {
-    data: state.AppState.data
-  }
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetch: () => actions.fetch(dispatch)
-  }
-};
-
 @asyncConnect([{
-  // promise: ({ store: { dispatch } }) => {
-  //   // `fetch` is your redux action returning a promise
-  //   return dispatch(fetch());
-  // }
+  promise: ({ store: { dispatch } }) => {
+    // `fetch` is your redux action returning a promise
+    return dispatch(actions.fetch());
+  }
 }])
-@connect(mapStateToProps, mapDispatchToProps)
+// @connect(mapStateToProps, mapDispatchToProps)
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
