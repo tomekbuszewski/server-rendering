@@ -17,10 +17,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 @asyncConnect([{
-  promise: ({ store: { dispatch } }) => {
-    // `fetch` is your redux action returning a promise
-    return dispatch(fetch());
-  }
+  // promise: ({ store: { dispatch } }) => {
+  //   // `fetch` is your redux action returning a promise
+  //   return dispatch(fetch());
+  // }
 }])
 @connect(mapStateToProps, mapDispatchToProps)
 class AppComponent extends React.Component {

@@ -29,23 +29,39 @@ const createPage = (html, store) => {
   `
 };
 
-app.get('*', (req, res) => {
-  match({ routes, location: req.url }, (err, redirect, renderProps) => {
-    // 1. load data
-    loadOnServer({ ...renderProps, store }).then(() => {
-
-      // 2. use `ReduxAsyncConnect` instead of `RoutingContext` and pass it `renderProps`
-      const appHTML = renderToString(
-        <Provider store={store} key="provider">
-          <ReduxAsyncConnect {...renderProps} />
-        </Provider>
-      )
-
-      // 3. render the Redux initial data into the server markup
-      const html = createPage(appHTML, store)
-      res.send(html)
-    })
-  })
+app.get('/', (req, res) => {
+  res.send(`
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+             <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+             <title>Document</title>
+</head>
+<body>
+  
+<div id="app"></div>
+<script src="/public/index.js"></script>
+</body>
+</html>
+`);
+  // match({ routes, location: req.url }, (err, redirect, renderProps) => {
+  //   // 1. load data
+  //   loadOnServer({ ...renderProps, store }).then(() => {
+  //
+  //     // 2. use `ReduxAsyncConnect` instead of `RoutingContext` and pass it `renderProps`
+  //     const appHTML = renderToString(
+  //       <Provider store={store} key="provider">
+  //         <ReduxAsyncConnect {...renderProps} />
+  //       </Provider>
+  //     )
+  //
+  //     // 3. render the Redux initial data into the server markup
+  //     const html = createPage(appHTML, store)
+  //     res.send(html)
+  //   })
+  // })
 })
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
