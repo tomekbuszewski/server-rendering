@@ -9,11 +9,11 @@ import store from './store';
 
 import App from './Components/App';
 
-render(
+render((
   <Provider store={store} key="provider">
     <Router render={(props) => <ReduxAsyncConnect {...props}/>} history={browserHistory}>
       <Route path="/" component={App}/>
     </Router>
-  </Provider>,
+  </Provider>),
   document.getElementById('app')
 );

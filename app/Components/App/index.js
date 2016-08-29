@@ -1,7 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 
 import actions from './actions';
+
+const mapStateToProps = (state) => {
+  return {
+    data: state.AppState.data
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetch: () => actions.fetch(dispatch)
+  }
+};
 
 @asyncConnect([{
   promise: ({ store: { dispatch } }) => {
@@ -15,8 +28,6 @@ class AppComponent extends React.Component {
     super(props);
 
     this.props = props;
-
-    console.log(props);
   }
 
   componentDidMount() {
@@ -26,7 +37,7 @@ class AppComponent extends React.Component {
   render() {
     return (
         <div>
-          {this.props.AppState.data.map(f => {
+          {this.props.data.map(f => {
             return (
                 <p key={f.id}>{f.title}</p>
             )
