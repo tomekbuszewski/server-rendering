@@ -1,6 +1,8 @@
 require('babel-register');
 
 import express from 'express';
+import path from 'path';
+
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
@@ -13,6 +15,7 @@ import App from './app/Components/App';
 const app = express();
 
 const currentStore = store.getState();
+const port = 666;
 
 app.get('/', (req, res) => {
   const body = renderToString(
@@ -21,18 +24,20 @@ app.get('/', (req, res) => {
     </Provider>
   );
 
-  res.send(`
-    <!DOCTYPE html>
+  res.send(`<!DOCTYPE html>
     <html>
       <head>
         <title>React</title>
       </head>
       <body>
-      ${body}
+      <div id="app">${body}</div>
       <script>window.__PRELOADED_STATE__ = ${JSON.stringify(currentStore)}</script>
+      <script src="/public/index.js"></script>
       </body>
-    </html>
-`);
+    </html>`);
 });
 
-app.listen(3000);
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+app.listen(port);
+console.log(`localhost:${port}`);

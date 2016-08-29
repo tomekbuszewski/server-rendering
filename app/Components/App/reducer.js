@@ -1,6 +1,6 @@
 const initialState = {
   data: [
-    { p: 1, title: 'test' }
+    { id: 1, title: 'Orgy "Revival" from ("Candyass")' }
   ]
 };
 
