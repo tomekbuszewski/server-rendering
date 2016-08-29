@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
-import { ReduxAsyncConnect } from 'redux-connect'
+import { ReduxAsyncConnect, asyncConnect, reducer as reduxAsyncConnect } from 'redux-connect'
 import App from './Components/App';
 import { Provider } from 'react-redux';
 

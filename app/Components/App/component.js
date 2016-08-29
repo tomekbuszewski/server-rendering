@@ -1,5 +1,5 @@
 import React from 'react';
-import { asyncConnect } from 'redux-connect'
+import { ReduxAsyncConnect, asyncConnect, reducer as reduxAsyncConnect } from 'redux-connect'
 
 @asyncConnect([ {
   key:     'lunch',
