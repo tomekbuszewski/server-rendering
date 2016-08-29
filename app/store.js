@@ -4,11 +4,11 @@ import reducers from './reducers';
 
 let store;
 
+const preloadState = window.__PRELOADED_STATE__;
 if (typeof(window) !== 'undefined') {
-  const preloadState = window.__PRELOADED_STATE__;
   store = createStore(reducers, preloadState, window.devToolsExtension && window.devToolsExtension());
 } else {
-  store = createStore(reducers);
+  store = createStore(reducers, preloadState);
 }
 
 export default store;
