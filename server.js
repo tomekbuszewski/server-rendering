@@ -25,19 +25,20 @@ app.get('/', (req, res) => {
   );
 
   res.send(`<!DOCTYPE html>
-    <html>
-      <head>
-        <title>React</title>
-      </head>
-      <body>
-      <div id="app">${body}</div>
-      <script>window.__PRELOADED_STATE__ = ${JSON.stringify(currentStore)}</script>
-      <script src="/public/index.js"></script>
-      </body>
-    </html>`);
+<html>
+  <head>
+    <title>React</title>
+  </head>
+  <body>
+  <div id="app">${body}</div>
+  <script>window.__PRELOADED_STATE__ = ${JSON.stringify(currentStore)}</script>
+  
+  </body>
+</html>`);
 });
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/data', express.static(path.join(__dirname, 'data')));
 
 app.listen(port);
 console.log(`localhost:${port}`);

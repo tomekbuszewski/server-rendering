@@ -1,15 +1,27 @@
 import React from 'react';
 
-const AppComponent = (props) => {
-  return (
-    <div>
-      {props.AppState.data.map(f => {
-        return (
-          <p key={f.id}>{f.title}</p>
-        )
-      })}
-    </div>
-  )
-};
+class AppComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.props = props;
+  }
+
+  componentDidMount() {
+    this.props.fetch();
+  }
+
+  render() {
+    return (
+        <div>
+          {this.props.AppState.data.map(f => {
+            return (
+                <p key={f.id}>{f.title}</p>
+            )
+          })}
+        </div>
+    )
+  }
+}
 
 export default AppComponent;

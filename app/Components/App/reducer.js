@@ -1,7 +1,5 @@
 const initialState = {
-  data: [
-    { id: 1, title: 'Orgy "Revival" from ("Candyass")' }
-  ]
+  data: []
 };
 
 const AppState = (state = initialState, action) => {
