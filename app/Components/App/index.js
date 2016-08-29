@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { asyncConnect } from 'redux-connect';
 
 import actions from './actions';
 
-import AppComponent from './component';
-
 const mapStateToProps = (state) => {
-  return state
+  return {
+    data: state.AppState.data
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -15,6 +16,37 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
+@asyncConnect([{
+  promise: ({ store: { dispatch } }) => {
+    // `fetch` is your redux action returning a promise
+    return dispatch(fetch());
+  }
+}])
+@connect(mapStateToProps, mapDispatchToProps)
+class AppComponent extends React.Component {
+  constructor(props) {
+    super(props);
 
-export default App;
+    this.props = props;
+
+    console.log(props);
+  }
+
+  componentDidMount() {
+    this.props.fetch();
+  }
+
+  render() {
+    return (
+        <div>
+          {this.props.AppState.data.map(f => {
+            return (
+                <p key={f.id}>{f.title}</p>
+            )
+          })}
+        </div>
+    )
+  }
+}
+
+export default AppComponent;
