@@ -13,9 +13,9 @@ import routes from './app/routes';
 // import store from './app/store';
 
 const app  = express();
-const port = 666;
+const port = 3456;
 
-function createPage(html, store) {
+const createPage = (html, store) => {
   return `
     <!doctype html>
     <html>
@@ -23,13 +23,13 @@ function createPage(html, store) {
         <div id="app">${html}</div>
 
         <!-- its a Redux initial data -->
-        <script dangerouslySetInnerHTML={{__html: ${window.__data = JSON.stringify(store.getState() )} />
+        <script dangerouslySetInnerHTML={{__html: ${window.__data = JSON.stringify(store.getState())} />
       </body>
     </html>
   `
 }
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   const store = createStore(combineReducers({ reduxAsyncConnect }));
 
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {

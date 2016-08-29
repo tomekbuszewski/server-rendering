@@ -1,16 +1,19 @@
 import React from 'react';
-import { ReduxAsyncConnect, asyncConnect, reducer as reduxAsyncConnect } from 'redux-connect'
+import { asyncConnect } from 'redux-connect';
 
-@asyncConnect([ {
-  key:     'lunch',
-  promise: ({ params, helpers }) => Promise.resolve({ id: 1, name: 'Borsch' })
-} ])
+@asyncConnect([{
+  promise: ({ store: { dispatch } }) => {
+    return dispatch(fetch());
+  }
+}])
 
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
 
     this.props = props;
+
+    console.log(props);
   }
 
   componentDidMount() {
