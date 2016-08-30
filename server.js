@@ -13,7 +13,7 @@ import routes from './app/routes';
 import store from './app/store';
 
 const app  = express();
-const port = 3000;
+const port = 3100;
 
 const createPage = (html, store) => {
   return `
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
       // 3. render the Redux initial data into the server markup
       const html = createPage(appHTML, store)
       res.send(html)
-    })
+    }).catch((e) => { console.log(e); })
   })
 })
 
