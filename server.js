@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
         <Provider store={store}>
           <RouterContext {...renderProps} />
         </Provider>
-      )}</div>`)
+      )}</div><script src="1/public/index.js"></script>`)
     } else {
       console.log('err')
     }

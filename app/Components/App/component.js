@@ -10,13 +10,13 @@ class AppComponent extends React.Component {
 
   render() {
     return (
-        <div>
-          {this.props.AppState.data.map(f => {
-            return (
-                <p key={f.id}>{f.title}</p>
-            )
-          })}
-        </div>
+      <div>
+        {this.props.AppState.data.map(f => {
+          return (
+            <p key={f.id}>{f.title}</p>
+          )
+        })}
+      </div>
     )
   }
 }
