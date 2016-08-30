@@ -13,7 +13,7 @@ import routes from './app/routes';
 import store from './app/store';
 
 const app = express();
-const port         = 666;
+const port         = 3100;
 
 app.get('/', (req, res) => {
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
