@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import actions from './actions';
 
 @asyncConnect([ {
-  key: 'fetch',
+  key:     'fetch',
   promise: ({ store: { dispatch } }) => {
     return dispatch(actions.getfetch());
   }
@@ -26,13 +26,13 @@ class AppComponent extends React.Component {
 
   render() {
     return (
-        <div className="blah">
-          {this.props.data.map(f => {
-            return (
-                <p key={f.id}>{f.title}</p>
-            )
-          })}
-        </div>
+      <div className="blah">
+        {this.props.data.map(f => {
+          return (
+            <p key={f.id}>{f.title}</p>
+          )
+        })}
+      </div>
     )
   }
 }
