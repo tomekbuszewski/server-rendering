@@ -1,22 +1,26 @@
 import axios from 'axios';
+import store from '../../store';
+var http = require('http');
 
-const fetch = (dispatch) => {
-  const endpoint = '/data/index.json';
+const endpoint = 'http://localhost:3100/data/index.json';
 
-  return axios.get(endpoint).then((res) => {
-    Array.prototype.forEach.call(res.data, d => {
-      const payload = {
-        id:    d.id,
-        title: d.title
-      };
-
-      dispatch({ type: 'ADD_CONTENT', payload });
-    });
-  });
+const getfetch = (id = 10) => {
+  return dispatch => {
+    axios(endpoint)
+      .then(res => {
+        Array.prototype.forEach.call(res.data, d => {
+          const payload = { id: d.id, title: d.title };
+          dispatch({ type: 'ADD_CONTENT', payload });
+        })
+      })
+      .catch(error => {
+        console.log('Error', error.message);
+      });
+  };
 };
 
 const actions = {
-  fetch
+  getfetch
 };
 
 export default actions;

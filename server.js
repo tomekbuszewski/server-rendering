@@ -3,6 +3,7 @@ require('babel-register');
 import express from 'express';
 import path from 'path';
 
+import React from 'react';
 import { renderToString } from 'react-dom/server'
 import { match, RoutingContext } from 'react-router'
 import { ReduxAsyncConnect, loadOnServer, reducer as reduxAsyncConnect } from 'redux-connect'
@@ -23,7 +24,6 @@ const createPage = (html, store) => {
         <div id="app">${html}</div>
 
         <!-- its a Redux initial data -->
-        <script dangerouslySetInnerHTML={{__html: ${window.__data = JSON.stringify(store.getState())} />
       </body>
     </html>
   `
