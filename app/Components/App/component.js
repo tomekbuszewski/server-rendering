@@ -5,18 +5,20 @@ class AppComponent extends React.Component {
     super(props);
 
     this.props = props;
-    this.props.fetch();
+    this.id = 1;
+    this.props.fetch(++this.id);
   }
 
   render() {
     return (
+      this.props.state.AppState.data ?
       <div>
-        {this.props.AppState.data.map(f => {
+        {this.props.state.AppState.data.map(f => {
           return (
             <p key={f.id}>{f.title}</p>
           )
         })}
-      </div>
+      </div> : ''
     )
   }
 }

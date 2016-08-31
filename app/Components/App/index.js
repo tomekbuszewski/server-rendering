@@ -5,15 +5,13 @@ import actions from './actions';
 
 import AppComponent from './component';
 
-const mapStateToProps = (state) => {
-  return state
-};
+const mapStateToProps = (state) => ({
+  state
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetch: () => actions.fetch(dispatch)
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  fetch(id) { dispatch(actions.fetch(id)) }
+});
 
 const App = connect(mapStateToProps, mapDispatchToProps)(AppComponent);
 
