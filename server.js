@@ -17,16 +17,14 @@ const app  = express();
 const port = 3100;
 
 const createPage = (html, store) => {
-  return `
-    <!doctype html>
+  return `<!doctype html>
     <html>
       <body>
         <div id="app">${html}</div>
-
-        <!-- its a Redux initial data -->
+        
+        <script src="/public/index.js"></script>
       </body>
-    </html>
-  `
+    </html>`
 };
 
 app.get('/', (req, res) => {
@@ -42,7 +40,7 @@ app.get('/', (req, res) => {
       )
 
       // 3. render the Redux initial data into the server markup
-      const html = createPage(appHTML, store)
+      const html = createPage(appHTML, store);
       res.send(html)
     }).catch((e) => { console.log(e); })
   })
