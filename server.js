@@ -23,7 +23,9 @@ const createPage = (html) => {
       </head>
       <body>
         <div id="app">${html}</div>
-        <script>window.__data = ${JSON.stringify(store.getState())}></script>
+        <script>
+          window.__data = ${JSON.stringify(store.getState())}
+        </script>
         <script src="/public/index.js"></script>
       </body>
     </html>`
