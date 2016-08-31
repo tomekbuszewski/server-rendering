@@ -10,7 +10,12 @@ const initialState = {
 const AppState = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_CONTENT':
-      return { ...state, data: [...state.data, action.payload] };
+      console.log(state);
+      if (state.data.indexOf(action.payload) === -1) {
+        return { ...state, data: [...state.data, action.payload] };
+      } else {
+        return state;
+      }
     default:
       return state;
   }
