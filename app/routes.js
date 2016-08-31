@@ -8,7 +8,7 @@ import store from './store';
 
 const routes = (
   <Provider store={store} key="provider">
-    <Router render={(props) => <ReduxAsyncConnect {...props}/>} history={browserHistory}>
+    <Router render={(props) => <ReduxAsyncConnect {...props}  />} history={browserHistory}>
       <Route path="/" component={App}/>
     </Router>
   </Provider>

@@ -5,15 +5,13 @@ import { connect } from 'react-redux';
 import actions from './actions';
 
 @asyncConnect([ {
+  key: 'fetch',
   promise: ({ store: { dispatch } }) => {
-    // `fetch` is your redux action returning a promise
-    return dispatch(actions.getfetch(5));
+    return dispatch(actions.getfetch());
   }
 } ])
 @connect(
   state => ({
-    // At this point, you can access your redux data as the
-    // fetch will have finished
     data: state.AppState.data
   })
 )
@@ -28,7 +26,7 @@ class AppComponent extends React.Component {
 
   render() {
     return (
-        <div>
+        <div className="blah">
           {this.props.data.map(f => {
             return (
                 <p key={f.id}>{f.title}</p>
