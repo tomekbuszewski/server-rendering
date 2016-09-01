@@ -6,7 +6,7 @@ import path from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server'
 import { match } from 'react-router'
-import { ReduxAsyncConnect, loadOnServer, reducer as reduxAsyncConnect } from 'redux-connect'
+import { ReduxAsyncConnect, loadOnServer } from 'redux-connect'
 import { Provider } from 'react-redux';
 
 import routes from './app/routes';
@@ -21,12 +21,12 @@ const createPage = (html) => {
       <head>
         <title>123</title>
       </head>
+      <script src="/1public/index.js"></script>
       <body>
         <div id="app">${html}</div>
         <script>
           window.__data = ${JSON.stringify(store.getState())}
         </script>
-        <script src="/public/index.js"></script>
       </body>
     </html>`
 };

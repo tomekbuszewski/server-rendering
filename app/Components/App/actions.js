@@ -1,6 +1,4 @@
 import axios from 'axios';
-import store from '../../store';
-var http = require('http');
 
 const endpoint = 'http://localhost:3100/data/index.json';
 

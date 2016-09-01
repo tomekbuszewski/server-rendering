@@ -1,5 +1,5 @@
 import React from 'react';
-import { asyncConnect } from 'redux-connect';
+import { asyncConnect } from 'redux-async-connect';
 import { connect } from 'react-redux';
 
 import actions from './actions';
@@ -20,8 +20,6 @@ class AppComponent extends React.Component {
     super(props);
 
     this.props = props;
-
-    // console.log(this.props.data);
   }
 
   render() {
