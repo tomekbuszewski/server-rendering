@@ -24,19 +24,19 @@ class AppComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    this.smile = this.smile.bind(this);
-
     this.props = props;
   }
 
   render() {
     return (
       <div>
+        <header>Site title</header>
         {this.props.data.map(f => {
           return (
             <p key={f.id}>{f.title}</p>
           )
         })}
+        <footer>Site footer</footer>
       </div>
     )
   }
