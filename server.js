@@ -21,12 +21,12 @@ const createPage = (html) => {
       <head>
         <title>123</title>
       </head>
-      <script src="/1public/index.js"></script>
       <body>
         <div id="app">${html}</div>
         <script>
           window.__data = ${JSON.stringify(store.getState())}
         </script>
+        <script src="/public/index.js"></script>
       </body>
     </html>`
 };

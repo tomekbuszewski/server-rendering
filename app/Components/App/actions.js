@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const endpoint = 'http://localhost:3100/data/index.json';
 
-const getfetch = (id = 10) => {
+const getfetch = () => {
   return dispatch => {
     axios(endpoint)
       .then(res => {
