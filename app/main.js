@@ -6,8 +6,3 @@ import { match } from 'react-router'
 match({ routes, location: '/' }, () => {
   render(routes, document.getElementById('app'))
 });
-
-// render(
-//   routes,
-//   document.getElementById('app')
-// );
